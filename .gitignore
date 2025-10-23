@@ -1,0 +1,13 @@
+# MeiliSearch data directory
+data/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Dumps/backups
+dumps/
+backups/
+*.tar.gz

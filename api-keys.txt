@@ -1,0 +1,82 @@
+========================================
+SELLR MEILISEARCH API KEYS
+========================================
+Generated: 2025-10-23
+
+IMPORTANT: Keep these keys secure and never commit to version control!
+
+========================================
+1. MASTER KEY (Administrative Access)
+========================================
+Use for: Server-side administration only
+Key: 1OsiXmHC7M6ifhfRBJNwB2cSRF5Q3nclXyL4sq1knx0=
+
+Add to Backend/.env:
+MEILI_MASTER_KEY=1OsiXmHC7M6ifhfRBJNwB2cSRF5Q3nclXyL4sq1knx0=
+
+========================================
+2. SEARCH KEY (Frontend - Read Only)
+========================================
+Use for: Frontend search queries only
+Actions: search
+Indexes: products
+Key: ea7dc992cfbd4202ac85ca80b20a2a1d4e276b91c1be4bda308c8a46e60ecadd
+
+Add to frontend/.env.local:
+NEXT_PUBLIC_MEILISEARCH_HOST=http://localhost:7700
+NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY=ea7dc992cfbd4202ac85ca80b20a2a1d4e276b91c1be4bda308c8a46e60ecadd
+
+========================================
+3. ADMIN KEY (Backend - Full Access)
+========================================
+Use for: Backend product indexing and management
+Actions: * (all)
+Indexes: * (all)
+Key: d25fd109552f0578a0877e0635c553d1bfbbeb29966ad30b75e1f629c7ed6b32
+
+Add to Backend/.env:
+MEILI_HOST=http://localhost:7700
+MEILI_ADMIN_KEY=d25fd109552f0578a0877e0635c553d1bfbbeb29966ad30b75e1f629c7ed6b32
+
+========================================
+SETUP STATUS
+========================================
+[OK] MeiliSearch container running on port 7700
+[OK] Products index created (taskUid: 0)
+[OK] Search settings configured (taskUid: 1)
+  - Searchable: title, description, tags, category, condition
+  - Filterable: category, condition, prices, userId, stock
+  - Sortable: prices, createdAt, stock, discount
+[OK] API keys generated
+
+========================================
+NEXT STEPS
+========================================
+1. Add the environment variables to your .env files (see above)
+
+2. Backend Integration:
+   - Copy meilisearch/examples/meilisearch.service.example.ts to Backend/src/meilisearch/
+   - Follow meilisearch/INTEGRATION_GUIDE.md
+
+3. Frontend Integration:
+   - Create search component using the SEARCH KEY
+   - Example code in meilisearch/examples/
+
+4. Verify Setup:
+   Run: curl http://localhost:7700/indexes/products/stats -H "Authorization: Bearer {ADMIN_KEY}"
+
+5. Documentation:
+   - Quick Start: meilisearch/QUICK_START.md
+   - Integration Guide: meilisearch/INTEGRATION_GUIDE.md
+   - Full README: meilisearch/README.md
+
+========================================
+SECURITY REMINDERS
+========================================
+- NEVER expose MASTER KEY or ADMIN KEY to the frontend
+- Use SEARCH KEY only for frontend (limited to search action)
+- Add api-keys.txt to .gitignore
+- Rotate keys periodically in production
+- Use different keys for dev/staging/production environments
+
+========================================
