@@ -11,3 +11,4 @@ data/
 dumps/
 backups/
 *.tar.gz
+/node_modules
